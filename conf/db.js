@@ -5,6 +5,4 @@ const DBport = 27017;
 const DBdb = "accounts";
 
 
-module.exports = () => {
-    url = 'mongodb://${DBuser}:${DBpassword}@localhost:${DBport}/${DBdb}'
-}
+exports.url = `mongodb://${DBuser}:${DBpassword}@localhost:${DBport}/${DBdb}`
