@@ -14,9 +14,9 @@ class App extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch('/api/requirement');
+    const response = await fetch('http://localhost:3001/api/');
     const body = await response.json();
-
+    console.log(body);
     if (response.status !== 200) throw Error(body.message);
 
     return body;

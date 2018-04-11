@@ -23,6 +23,10 @@ module.exports = (app, db) => {
             res.send({quotes: result})
         })
     });
+
+app.get('/', (req,res) => {
+res.send("connected GET");
+})
     
     return router
 }

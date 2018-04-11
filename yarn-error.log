@@ -1,0 +1,63 @@
+Arguments: 
+  /root/.nvm/versions/node/v9.11.1/bin/node /usr/share/yarn/bin/yarn.js dev
+
+PATH: 
+  /root/.nvm/versions/node/v9.11.1/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  9.11.1
+
+Platform: 
+  linux x64
+
+npm manifest: 
+  {
+    "name": "account-manager",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "client": "cd client && yarn start",
+      "server": "nodemon server/server.js",
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.18.2",
+      "ejs": "^2.5.8",
+      "express": "^4.16.3",
+      "mongodb": "^3.0.6",
+      "react": "^16.3.1",
+      "react-dom": "^16.3.1"
+    },
+    "devDependencies": {
+      "nodemon": "^1.17.3",
+      "concurrently": "^3.5.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: Command failed.
+  Exit code: 1
+  Command: sh
+  Arguments: -c concurrently --kill-others-on-fail "yarn server" "yarn client"
+  Directory: /var/www/app
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/share/yarn/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/share/yarn/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/share/yarn/lib/cli.js:30281:17)
+      at ChildProcess.emit (events.js:180:13)
+      at maybeClose (internal/child_process.js:936:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
