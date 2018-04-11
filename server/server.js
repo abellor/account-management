@@ -1,4 +1,4 @@
-const database      = require('./../conf/db')
+const database      = require('./conf/db')
 const path          = require("path");
 const express       = require("express");
 const bodyParser    = require("body-parser");
@@ -16,7 +16,7 @@ MongoClient.connect(database.url, (err, client) => {
     console.log("Connected to the mongoDB !");
     let db = client.db('accounts');
     
-    const api = require("./../routes/api")(app, db);
+    const api = require("./routes/api")(app, db);
     app.use('/api', api);
 
     app.listen(port, () => {
@@ -27,13 +27,3 @@ MongoClient.connect(database.url, (err, client) => {
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
-
-app.get('/', (req, res) =>{
-    db.collection('quotes').find().toArray((err, result) => {
-        if (err) return console.log(err)
-        // renders index.ejs
-        res.render('index.ejs', {quotes: result})
-    })
-});
-
-
