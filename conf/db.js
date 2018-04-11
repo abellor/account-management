@@ -1,0 +1,10 @@
+
+const DBuser = "admin";
+const DBpassword = "pymes100417!";
+const DBport = 27017;
+const DBdb = "accounts";
+
+
+module.exports = () => {
+    url = 'mongodb://${DBuser}:${DBpassword}@localhost:${DBport}/${DBdb}'
+}

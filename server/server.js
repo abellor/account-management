@@ -1,27 +1,30 @@
-const path = require("path");
-const express = require("express");
+const database      = require('./../conf/db')
+const path          = require("path");
+const express       = require("express");
+const bodyParser    = require("body-parser");
+const MongoClient   = require('mongodb').MongoClient;
+
+const port = 2000;
 const app = express();
-const bodyParser = require("body-parser");
-const MongoClient = require('mongodb').MongoClient;
 
-let db;
-
-app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({extended: true}));
-
-MongoClient.connect('mongodb://admin:pymes100417!@localhost:27017/accounts', (err, client) => {
-
+MongoClient.connect(database.url, (err, client) => {
     if(err)
         throw err;
-    console.log("connected to the mongoDB !");
-    
-    db = client.db('accounts');
 
-    app.listen(2000, () => {
-        console.log("listening port 2000");
+    console.log("Connected to the mongoDB !");
+    let db = client.db('accounts');
+    
+    const api = require("./routes/api")(app, db);
+    app.use('/api', api);
+
+    app.listen(port, () => {
+        console.log("Listening port " + port);
     });
 
 });
+
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) =>{
     db.collection('quotes').find().toArray((err, result) => {
@@ -31,11 +34,4 @@ app.get('/', (req, res) =>{
     })
 });
 
-app.post('/requirements', (req, res) => {
-  db.collection('quotes').save(req.body, (err, result) => {
-    if (err) return console.log(err)
 
-    console.log('saved to database')
-    res.redirect('/')
-  })
-})
