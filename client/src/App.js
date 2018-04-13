@@ -1,4 +1,5 @@
 import React , {Component} from 'react';
+import moment from 'moment';
 import logo from './logo.svg';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -12,6 +13,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Divider from 'material-ui/Divider';
@@ -24,6 +26,9 @@ const styleF = {
   paddingTop: 20,
   paddingBottom: 20
 };
+
+const SO = moment.now();
+const defaultDate = new Date();
 
 class App extends Component {
 
@@ -73,17 +78,44 @@ render(){
 	<div>
 	  <form action="/api/requirement" method="POST" style={styleF}>
 	    <TextField
-	      hintText="Hint Text"
-	      name="name" id="name"
-	      floatingLabelText="Name"
+	      disabled={true}
+	      name="service-order" id="service-order"
+	      defaultValue={SO}
+              floatingLabelText="Orden de servicio No."
+	    />
+	    <DatePicker disabled={true} defaultDate={defaultDate} floatingLabelText="Fecha" />
+	    <TextField
+	      hintText="Cliente"
+	      name="cliente" id="cliente"
+	      floatingLabelText="Cliente"
 	      style={styleI}
 	    /> 
             <TextField
-              hintText="Hint Text"
-	      name="quote" id="quote"
-              floatingLabelText="Quote"
+              hintText="No. Caso"
+	      name="no-caso" id="no-caso"
+              floatingLabelText="No. Caso"
               style={styleI}
-            /> 
+            /><br/>
+            <TextField
+              hintText="NIT o C.C."
+              name="nit-cc" id="nit-cc"
+              floatingLabelText="Nit o C.C."
+              style={styleI}
+            />
+            <TextField
+              hintText="Teléfono"
+              name="telefono" id="telefono"
+              floatingLabelText="Teléfono"
+              style={styleI}
+            /><br/>
+	    <TextField
+              name="desc" id="desc"
+              floatingLabelText="Description"
+              style={styleI}
+	      fullWidth={true}
+              multiLine={true}
+       	      rows={5}
+            />
 	    <RaisedButton label="Submit" primary={true} style={styleI} type="submit" />
 	  </form>
 	  <Divider />
