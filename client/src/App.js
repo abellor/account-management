@@ -17,6 +17,8 @@ import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Divider from 'material-ui/Divider';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 import MyAwesomeReactComponent from './components/MyAwesomeReactComponent';
 
 const styleI = {
@@ -44,6 +46,7 @@ class App extends Component {
     deselectOnClickaway: true,
     showCheckboxes: true,
     //height: '300px'
+    value: 1
   };
 
   componentDidMount() {
@@ -60,6 +63,8 @@ class App extends Component {
 
     return body;
   };
+
+  handleChange = (event, index, value) => this.setState({value});
 
 
 render(){
@@ -90,32 +95,103 @@ render(){
 	      floatingLabelText="Cliente"
 	      style={styleI}
 	    /> 
-            <TextField
-              hintText="No. Caso"
-	      name="no-caso" id="no-caso"
-              floatingLabelText="No. Caso"
-              style={styleI}
-            /><br/>
-            <TextField
-              hintText="NIT o C.C."
-              name="nit-cc" id="nit-cc"
-              floatingLabelText="Nit o C.C."
-              style={styleI}
-            />
-            <TextField
-              hintText="Teléfono"
-              name="telefono" id="telefono"
-              floatingLabelText="Teléfono"
-              style={styleI}
-            /><br/>
-	    <TextField
-              name="desc" id="desc"
-              floatingLabelText="Description"
-              style={styleI}
-	      fullWidth={true}
-              multiLine={true}
-       	      rows={5}
-            />
+      <TextField
+        hintText="No. Caso"
+        name="no-caso" id="no-caso"
+        floatingLabelText="No. Caso"
+        style={styleI}
+      /><br/>
+      <TextField
+        hintText="NIT o C.C."
+        name="nit-cc" id="nit-cc"
+        floatingLabelText="Nit o C.C."
+        style={styleI}
+      />
+      <TextField
+        hintText="Teléfono"
+        name="telefono" id="telefono"
+        floatingLabelText="Teléfono"
+        style={styleI}
+      /><br/>
+      <TextField
+        hintText="Dirección"
+        name="direccion" id="direccion"
+        floatingLabelText="Dirección"
+        style={styleI}
+      /><br/>
+      <SelectField
+          floatingLabelText="Equipo"
+          value={this.state.value}
+          onChange={this.handleChange}
+        >
+          <MenuItem value={1} primaryText="Escritorio" />
+          <MenuItem value={2} primaryText="Portatil" />
+          <MenuItem value={3} primaryText="Todo en uno" />
+          <Divider />
+          <MenuItem value={4} primaryText="Impresora" />
+          <MenuItem value={5} primaryText="Samrtphone" />
+          <MenuItem value={6} primaryText="Tableta" />
+          <Divider />
+          <MenuItem value={7} primaryText="Otro" />
+      </SelectField>
+      <SelectField
+          floatingLabelText="Servicio"
+          value={this.state.value}
+          onChange={this.handleChange}
+        >
+          <MenuItem value={1} primaryText="Facturación" />
+          <MenuItem value={2} primaryText="Instalación" />
+          <MenuItem value={3} primaryText="Garantía" />
+          <MenuItem value={4} primaryText="Contrato" />
+      </SelectField>
+      <TextField
+        hintText="Marca"
+        name="marca" id="marca"
+        floatingLabelText="Marca"
+        style={styleI}
+      />
+      <TextField
+        hintText="Modelo"
+        name="modelo" id="modelo"
+        floatingLabelText="Modelo"
+        style={styleI}
+      />
+      <TextField
+        hintText="No. Producto"
+        name="no-producto" id="no-producto"
+        floatingLabelText="No. Producto"
+        style={styleI}
+      />
+      <TextField
+        hintText="No. Serial"
+        name="no-serial" id="no-serial"
+        floatingLabelText="No. Serial"
+        style={styleI}
+      /><br/>
+      <TextField
+        name="motivo" id="motivo"
+        floatingLabelText="Motivo del Servicio"
+        style={styleI}
+        fullWidth={true}
+        multiLine={true}
+        rows={5}
+      /><br/>
+      <TextField
+        name="accion" id="accion"
+        floatingLabelText="Acción Tomada"
+        style={styleI}
+        fullWidth={true}
+        multiLine={true}
+        rows={5}
+      /><br/>
+      <TextField
+        name="observaciones" id="observaciones"
+        floatingLabelText="Observaciones"
+        style={styleI}
+        fullWidth={true}
+        multiLine={true}
+        rows={5}
+      />
 	    <RaisedButton label="Submit" primary={true} style={styleI} type="submit" />
 	  </form>
 	  <Divider />
