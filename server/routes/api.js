@@ -17,15 +17,15 @@ module.exports = (app, db) => {
         })
     })
 
-    app.get('/requirement', (req, res) =>{
+    router.get('/requirement', (req, res) =>{
         db.collection('quotes').find().toArray((err, result) => {
             if (err) return console.log(err)
             res.send({quotes: result})
         })
     });
 
-app.get('/', (req,res) => {
-res.send("connected GET");
+router.get('/test', (req,res) => {
+res.send({"message":"connected GET"});
 })
     
     return router

@@ -1,8 +1,8 @@
 Arguments: 
-  /root/.nvm/versions/node/v9.11.1/bin/node /usr/share/yarn/bin/yarn.js dev
+  /root/.nvm/versions/node/v9.11.1/bin/node /usr/share/yarn/bin/yarn.js client
 
 PATH: 
-  /root/.nvm/versions/node/v9.11.1/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+  /var/www/app/node_modules/.bin:/usr/local/share/.config/yarn/link/node_modules/.bin:/var/www/app/node_modules/.bin:/usr/local/share/.config/yarn/link/node_modules/.bin:/root/.nvm/versions/node/v9.11.1/libexec/lib/node_modules/npm/bin/node-gyp-bin:/root/.nvm/versions/node/v9.11.1/lib/node_modules/npm/bin/node-gyp-bin:/root/.nvm/versions/node/v9.11.1/bin/node_modules/npm/bin/node-gyp-bin:/root/.nvm/versions/node/v9.11.1/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 
 Yarn version: 
   1.5.1
@@ -49,9 +49,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit signal: SIGHUP
   Command: sh
-  Arguments: -c concurrently --kill-others-on-fail "yarn server" "yarn client"
+  Arguments: -c cd client && yarn start
   Directory: /var/www/app
   Output:
   

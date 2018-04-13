@@ -17,16 +17,17 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Divider from 'material-ui/Divider';
 import MyAwesomeReactComponent from './components/MyAwesomeReactComponent';
 
-const styleI = {
+const style = {
+"inputsForm": {
   marginLeft: 20,
-};
-const styleF = {
+},
+"formForm": {
   paddingTop: 20,
   paddingBottom: 20
+}
 };
 
 class App extends Component {
-
   state = {
     response: [],
     fixedHeader: true,
@@ -70,21 +71,21 @@ render(){
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-	<div>
-	  <form action="/api/requirement" method="POST" style={styleF}>
+	<div style={style.formForm}>
+	  <form action="/api/requirement" method="POST">
 	    <TextField
 	      hintText="Hint Text"
 	      name="name" id="name"
 	      floatingLabelText="Name"
-	      style={styleI}
+	      style="margin-left:10px"
 	    /> 
             <TextField
               hintText="Hint Text"
 	      name="quote" id="quote"
               floatingLabelText="Quote"
-              style={styleI}
+              style="margin-left:10px"
             /> 
-	    <RaisedButton label="Submit" primary={true} style={styleI} type="submit" />
+	    <RaisedButton label="Submit" primary={true} style="margin-left:10px" type="submit" />
 	  </form>
 	  <Divider />
 	</div>
