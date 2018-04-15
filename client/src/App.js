@@ -46,7 +46,8 @@ class App extends Component {
     deselectOnClickaway: true,
     showCheckboxes: true,
     //height: '300px'
-    value: 1
+    valueF: 1,
+    valueS: 1
   };
 
   componentDidMount() {
@@ -64,7 +65,8 @@ class App extends Component {
     return body;
   };
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleChangeF = (event, index, value) => this.setState({valueF:value});
+  handleChangeS = (event, index, value) => this.setState({valueS:value});
 
 
 render(){
@@ -88,7 +90,7 @@ render(){
 	      defaultValue={SO}
               floatingLabelText="Orden de servicio No."
 	    />
-	    <DatePicker disabled={true} defaultDate={defaultDate} floatingLabelText="Fecha" />
+	    <DatePicker style={{display:'inline', marginLeft:'20px'}} disabled={true} defaultDate={defaultDate} floatingLabelText="Fecha" />
 	    <TextField
 	      hintText="Cliente"
 	      name="cliente" id="cliente"
@@ -121,8 +123,8 @@ render(){
       /><br/>
       <SelectField
           floatingLabelText="Equipo"
-          value={this.state.value}
-          onChange={this.handleChange}
+          value={this.state.valueF}
+          onChange={this.handleChangeF}
         >
           <MenuItem value={1} primaryText="Escritorio" />
           <MenuItem value={2} primaryText="Portatil" />
@@ -136,14 +138,14 @@ render(){
       </SelectField>
       <SelectField
           floatingLabelText="Servicio"
-          value={this.state.value}
-          onChange={this.handleChange}
+          value={this.state.valueS}
+          onChange={this.handleChangeS}
         >
           <MenuItem value={1} primaryText="Facturación" />
           <MenuItem value={2} primaryText="Instalación" />
           <MenuItem value={3} primaryText="Garantía" />
           <MenuItem value={4} primaryText="Contrato" />
-      </SelectField>
+      </SelectField><br/>
       <TextField
         hintText="Marca"
         name="marca" id="marca"
