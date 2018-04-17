@@ -15,7 +15,6 @@ import {
 } from 'material-ui/Table';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import Divider from 'material-ui/Divider';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -25,7 +24,6 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import MyAwesomeReactComponent from './components/MyAwesomeReactComponent';
 
 const styleI = {
   marginLeft: 0,
@@ -86,6 +84,10 @@ class App extends Component {
   handleChangeS = (event, index, value) => this.setState({valueS:value});
   handleOpen = () => {this.setState({open: true});};
   handleClose = () => {this.setState({open: false});};
+  submitForm = () => {
+    console.log("dssd");
+    document.reqForm.submit();
+    this.handleClose();};
 
 
 render(){
@@ -100,7 +102,7 @@ render(){
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleClose}
+        onClick={this.submitForm}
       />,
     ];
     return (
@@ -133,14 +135,16 @@ render(){
                     adjustForCheckbox={this.state.showCheckboxes}
                     enableSelectAll={this.state.enableSelectAll}>
                     <TableRow>
-                      <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{textAlign: 'center'}}>
+                      <TableHeaderColumn colSpan="4" tooltip="Super Header" style={{textAlign: 'center'}}>
                         Company Requirements
                       </TableHeaderColumn>
                     </TableRow>
                     <TableRow>
                       <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
-                      <TableHeaderColumn tooltip="The Name">Name</TableHeaderColumn>
-                      <TableHeaderColumn tooltip="The Status">Status</TableHeaderColumn>
+                      <TableHeaderColumn tooltip="Orden de Servicio">Orden</TableHeaderColumn>
+                      <TableHeaderColumn tooltip="No. Caso">No. Caso</TableHeaderColumn>
+                      <TableHeaderColumn tooltip="Cliente">Cliente</TableHeaderColumn>
+                      <TableHeaderColumn tooltip="Equipo">Equipo</TableHeaderColumn>
                     </TableRow>
                   </TableHeader>
                   <TableBody
@@ -151,9 +155,11 @@ render(){
                     if(rowsData.lenght > 0){
                       rowsData.map( (row, index) => (
                         <TableRow key={index}>
-                          <TableRowColumn>{index}</TableRowColumn>
-                          <TableRowColumn>{row.name}</TableRowColumn>
-                          <TableRowColumn>{row.quote}</TableRowColumn>
+                          <TableRowColumn>{index+1}</TableRowColumn>
+                          <TableRowColumn>{row.serviceorder}</TableRowColumn>
+                          <TableRowColumn>{row.nocaso}</TableRowColumn>
+                          <TableRowColumn>{row.nitcc}</TableRowColumn>
+                          <TableRowColumn>{row.marca}</TableRowColumn>                          
                         </TableRow>
                       ))
                     }
@@ -161,8 +167,10 @@ render(){
                   <TableFooter adjustForCheckbox={this.state.showCheckboxes}>
                     <TableRow>
                       <TableRowColumn>ID</TableRowColumn>
-                      <TableRowColumn>Name</TableRowColumn>
-                      <TableRowColumn>Status</TableRowColumn>
+                      <TableRowColumn>Orden</TableRowColumn>
+                      <TableRowColumn>No. Caso</TableRowColumn>
+                      <TableRowColumn>Cliente</TableRowColumn>
+                      <TableRowColumn>Equipo</TableRowColumn>                      
                     </TableRow>
                   </TableFooter>
                 </Table>
@@ -183,16 +191,16 @@ render(){
             <Grid fluid>
               <Row center="xs">
                 <Col xs={12} md={12}>
-                  <form action="/api/requirement" method="POST" style={styleF}>
+                  <form action="/api/requirement" method="POST" style={styleF} name="reqForm">
                   <Row end="xs">
                     <Col xs={12} md={6}>
                       <TextField
-                        disabled={true}
-                        name="service-order" id="service-order"
+                        disabled={false}
+                        name="serviceorder" id="service-order"
                         defaultValue={SO}
                               floatingLabelText="Orden de servicio No."
                       />
-                      <DatePicker style={{display:'inline', marginLeft:'20px'}} disabled={true} defaultDate={defaultDate} floatingLabelText="Fecha" />
+                      <DatePicker style={{display:'inline', marginLeft:'20px'}} disabled={false} defaultDate={defaultDate} floatingLabelText="Fecha" />
                     </Col>
                   </Row>
                   <Row start="xs">
@@ -208,7 +216,7 @@ render(){
                     <Col xs={12} md={6}>
                       <TextField
                         hintText="No. Caso"
-                        name="no-caso" id="no-caso"
+                        name="nocaso" id="no-caso"
                         floatingLabelText="No. Caso"
                         fullWidth={true}
                         style={styleI}
@@ -219,7 +227,7 @@ render(){
                     <Col xs={12} md={6}>
                       <TextField
                         hintText="NIT o C.C."
-                        name="nit-cc" id="nit-cc"
+                        name="nitcc" id="nit-cc"
                         floatingLabelText="Nit o C.C."
                         fullWidth={true}
                         style={styleI}
@@ -269,6 +277,7 @@ render(){
                   <Row start="xs">
                     <Col xs={12} md={3}>
                       <SelectField
+                          name="equipo"
                           floatingLabelText="Equipo"
                           value={this.state.valueF}
                           onChange={this.handleChangeF}
@@ -286,6 +295,7 @@ render(){
                     </Col>
                     <Col xs={12} md={3}>
                       <SelectField
+                          name="servicio"
                           floatingLabelText="Servicio"
                           value={this.state.valueS}
                           onChange={this.handleChangeS}
@@ -319,7 +329,7 @@ render(){
                     <Col xs={12} md={3}>
                     <TextField
                       hintText="No. Producto"
-                      name="no-producto" id="no-producto"
+                      name="noproducto" id="no-producto"
                       floatingLabelText="No. Producto"
                       fullWidth={true}
                       style={styleI}
@@ -328,7 +338,7 @@ render(){
                     <Col xs={12} md={3}>
                     <TextField
                       hintText="No. Serial"
-                      name="no-serial" id="no-serial"
+                      name="noserial" id="no-serial"
                       floatingLabelText="No. Serial"
                       fullWidth={true}
                       style={styleI}
